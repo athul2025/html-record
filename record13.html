@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bulb On/Off</title>
+</head>
+<body style="background-color: black; text-align: center;">
+
+  <img id="myImage" src="bulb.gif" width="100" height="180" alt="Bulb">
+
+  <br><br>
+
+  <button onclick="turnOn()">TURN ON</button>
+  <button onclick="turnOff()">TURN OFF</button>
+
+  <script>
+    function turnOn() {
+      document.getElementById('myImage').src = "pic_bulbon.gif";
+    }
+
+    function turnOff() {
+      document.getElementById('myImage').src = "bulb.gif";
+    }
+  </script>
+
+</body>
+</html>
+
