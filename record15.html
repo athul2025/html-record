@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration Form</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>STUDENT REGISTRATION FORM</h1>
+
+    <form name="regForm" onsubmit="return validateForm()">
+      <table>
+        <tr>
+          <th>FIRST NAME:</th>
+          <td><input type="text" name="fname" required></td>
+        </tr>
+
+        <tr>
+          <th>LAST NAME:</th>
+          <td><input type="text" name="lname" required></td>
+        </tr>
+
+        <tr>
+          <th>EMAIL ID:</th>
+          <td><input type="email" name="email" placeholder="abcdefg@gmail.com" required></td>
+        </tr>
+
+        <tr>
+          <th>DOB</th>
+          <td><input type="date" name="dob" required></td>
+        </tr>
+
+        <tr>
+          <th>MOBILE NUMBER</th>
+          <td><input type="tel" name="mobile" maxlength="10" placeholder="1234567890" required></td>
+        </tr>
+
+        <tr>
+          <th>GENDER</th>
+          <td>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+          </td>
+        </tr>
+
+        <tr>
+          <th>ADDRESS</th>
+          <td><textarea name="addr" rows="2" placeholder="address"></textarea></td>
+        </tr>
+
+        <tr>
+          <th>CITY</th>
+          <td><input type="text" name="city" maxlength="30" placeholder="ABC Town"></td>
+        </tr>
+
+        <tr>
+          <th>PIN CODE</th>
+          <td><input type="text" name="pin" maxlength="6" placeholder="6 digit number"></td>
+        </tr>
+
+        <tr>
+          <th>STATE</th>
+          <td><input type="text" name="state" placeholder="Kerala"></td>
+        </tr>
+
+        <tr>
+          <th>COUNTRY</th>
+          <td><input type="text" name="country" value="India"></td>
+        </tr>
+
+        <tr>
+          <th>HOBBIES</th>
+          <td>
+            <label><input type="checkbox" name="hobbies" value="dancing"> Dancing</label>
+            <label><input type="checkbox" name="hobbies" value="singing"> Singing</label>
+            <label><input type="checkbox" name="hobbies" value="painting"> Painting</label>
+            <label><input type="checkbox" name="hobbies" value="reading"> Reading</label>
+          </td>
+        </tr>
+
+        <tr>
+          <th>COURSE APPLIED FOR</th>
+          <td>
+            <label><input type="radio" name="course" value="BCA"> B.C.A</label>
+            <label><input type="radio" name="course" value="MTech"> M.Tech</label>
+            <label><input type="radio" name="course" value="MSc"> M.Sc</label>
+            <label><input type="radio" name="course" value="PhD"> Ph.D</label>
+          </td>
+        </tr>
+
+        <tr>
+          <th>PASSWORD</th>
+          <td><input type="password" name="pwd" maxlength="30" required>(max 30 characters)</td>
+        </tr>
+
+        <tr>
+          <th>USERNAME</th>
+          <td><input type="text" name="uname" maxlength="10" placeholder="10 characters"></td>
+        </tr>
+
+        <tr>
+          <th>Date of TC:</th>
+          <td><input type="date" name="tc_date"></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <button type="submit">SUBMIT</button>
+            <button type="reset">RESET</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      let f = document.forms["regForm"];
+
+      // Name validation
+      let namePattern = /^[A-Za-z]+$/;
+      if (!namePattern.test(f["fname"].value)) {
+        alert("First name must contain only letters.");
+        f["fname"].focus();
+        return false;
+      }
+      if (!namePattern.test(f["lname"].value)) {
+        alert("Last name must contain only letters.");
+        f["lname"].focus();
+        return false;
+      }
+
+      // Email validation
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(f["email"].value)) {
+        alert("Please enter a valid email address.");
+        f["email"].focus();
+        return false;
+      }
+
+      // Mobile validation
+      let mobilePattern = /^[0-9]{10}$/;
+      if (!mobilePattern.test(f["mobile"].value)) {
+        alert("Mobile number must be 10 digits.");
+        f["mobile"].focus();
+        return false;
+      }
+
+      // Gender validation
+      if (![...f["gender"]].some(r => r.checked)) {
+        alert("Please select your gender.");
+        return false;
+      }
+
+      // PIN validation
+      let pin = f["pin"].value.trim();
+      if (pin && !/^\d{6}$/.test(pin)) {
+        alert("PIN must be a 6-digit number.");
+        f["pin"].focus();
+        return false;
+      }
+
+      // Hobbies validation
+      if (![...f["hobbies"]].some(c => c.checked)) {
+        alert("Please select at least one hobby.");
+        return false;
+      }
+
+      // Course validation
+      if (![...f["course"]].some(r => r.checked)) {
+        alert("Please select a course.");
+        return false;
+      }
+
+      // Password validation
+      let pwd = f["pwd"].value;
+      if (pwd.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        f["pwd"].focus();
+        return false;
+      }
+
+      // Username validation
+      let uname = f["uname"].value;
+      if (uname && uname.length > 10) {
+        alert("Username must be up to 10 characters.");
+        f["uname"].focus();
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</body>
+</html>
+
