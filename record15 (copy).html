@@ -1,0 +1,222 @@
+<html>
+<head>
+  <title>Student Registration Form</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>STUDENT REGISTRATION FORM</h1>
+
+    <form name="regForm" onsubmit="return validateForm()">
+      <table>
+        <tr>
+          <th>FIRST NAME:</th>
+          <td>
+            <input type="text" name="fname" required onblur="validateFirstName()">
+            <span class="error" id="fnameError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>LAST NAME:</th>
+          <td>
+            <input type="text" name="lname" required onblur="validateLastName()">
+            <span class="error" id="lnameError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>EMAIL ID:</th>
+          <td>
+            <input type="email" name="email" placeholder="abcdefg@gmail.com" required onblur="validateEmail()">
+            <span class="error" id="emailError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>DOB</th>
+          <td><input type="date" name="dob" required></td>
+        </tr>
+
+        <tr>
+          <th>MOBILE NUMBER</th>
+          <td>
+            <input type="tel" name="mobile" maxlength="10" placeholder="1234567890" required onblur="validateMobile()">
+            <span class="error" id="mobileError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>GENDER</th>
+          <td>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+          </td>
+        </tr>
+
+        <tr>
+          <th>ADDRESS</th>
+          <td><textarea name="addr" rows="2" placeholder="address"></textarea></td>
+        </tr>
+
+        <tr>
+          <th>CITY</th>
+          <td><input type="text" name="city" maxlength="30" placeholder="ABC Town"></td>
+        </tr>
+
+        <tr>
+          <th>PIN CODE</th>
+          <td>
+            <input type="text" name="pin" maxlength="6" placeholder="6 digit number" onblur="validatePin()">
+            <span class="error" id="pinError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>STATE</th>
+          <td><input type="text" name="state" placeholder="Kerala"></td>
+        </tr>
+
+        <tr>
+          <th>COUNTRY</th>
+          <td><input type="text" name="country" value="India"></td>
+        </tr>
+
+        <tr>
+          <th>HOBBIES</th>
+          <td>
+            <label><input type="checkbox" name="hobbies" value="dancing"> Dancing</label>
+            <label><input type="checkbox" name="hobbies" value="singing"> Singing</label>
+            <label><input type="checkbox" name="hobbies" value="painting"> Painting</label>
+            <label><input type="checkbox" name="hobbies" value="reading"> Reading</label>
+          </td>
+        </tr>
+
+        <tr>
+          <th>COURSE APPLIED FOR</th>
+          <td>
+            <label><input type="radio" name="course" value="BCA"> B.C.A</label>
+            <label><input type="radio" name="course" value="MTech"> M.Tech</label>
+            <label><input type="radio" name="course" value="MSc"> M.Sc</label>
+            <label><input type="radio" name="course" value="PhD"> Ph.D</label>
+          </td>
+        </tr>
+
+        <tr>
+          <th>PASSWORD</th>
+          <td>
+            <input type="password" name="pwd" maxlength="30" required onblur="validatePassword()">
+            <span class="error" id="pwdError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>USERNAME</th>
+          <td>
+            <input type="text" name="uname" maxlength="10" placeholder="10 characters" onblur="validateUsername()">
+            <span class="error" id="unameError"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Date of TC:</th>
+          <td><input type="date" name="tc_date"></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <button type="submit">SUBMIT</button>
+            <button type="reset">RESET</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+    const f = document.forms["regForm"];
+
+    function validateFirstName() {
+      let name = f["fname"].value.trim();
+      let err = document.getElementById("fnameError");
+      err.textContent = /^[A-Za-z]+$/.test(name) ? "" : "Only letters allowed.";
+    }
+
+    function validateLastName() {
+      let name = f["lname"].value.trim();
+      let err = document.getElementById("lnameError");
+      err.textContent = /^[A-Za-z]+$/.test(name) ? "" : "Only letters allowed.";
+    }
+
+    function validateEmail() {
+      let email = f["email"].value.trim();
+      let err = document.getElementById("emailError");
+      let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      err.textContent = pattern.test(email) ? "" : "Invalid email.";
+    }
+
+    function validateMobile() {
+      let mobile = f["mobile"].value.trim();
+      let err = document.getElementById("mobileError");
+      err.textContent = /^[0-9]{10}$/.test(mobile) ? "" : "Must be 10 digits.";
+    }
+
+    function validatePin() {
+      let pin = f["pin"].value.trim();
+      let err = document.getElementById("pinError");
+      err.textContent = pin === "" || /^\d{6}$/.test(pin) ? "" : "6-digit number only.";
+    }
+
+    function validatePassword() {
+      let pwd = f["pwd"].value;
+      let err = document.getElementById("pwdError");
+      err.textContent = pwd.length >= 6 ? "" : "At least 6 characters.";
+    }
+
+    function validateUsername() {
+      let uname = f["uname"].value.trim();
+      let err = document.getElementById("unameError");
+      err.textContent = uname.length <= 10 ? "" : "Max 10 characters.";
+    }
+
+    // Final validation on submit
+    function validateForm() {
+      validateFirstName();
+      validateLastName();
+      validateEmail();
+      validateMobile();
+      validatePin();
+      validatePassword();
+      validateUsername();
+
+      // If any error message exists, stop submission
+      let errors = document.querySelectorAll(".error");
+      for (let e of errors) {
+        if (e.textContent !== "") {
+          alert("Please correct errors before submitting.");
+          return false;
+        }
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</body>
+</html>
+
