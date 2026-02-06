@@ -1,27 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Book Entry Form</title>
-</head>
-<body>
-  <h2>Enter Book Details</h2>
-  <form method="post" action="save_book.php">
-    <label>Book No:</label>
-    <input type="number" name="book_no" required><br><br>
+public class StringManipulation {
+    public static void main(String[] args) {
 
-    <label>Title:</label>
-    <input type="text" name="title" required><br><br>
+        String str1 = "Hello";
+        String str2 = "World";
+        String str3 = "hello";
 
-    <label>Edition:</label>
-    <input type="text" name="edition"><br><br>
+        // length()
+        System.out.println("Length of str1: " + str1.length());
 
-    <label>Publisher:</label>
-    <input type="text" name="publisher"><br><br>
+        // concat()
+        System.out.println("Concat: " + str1.concat(" " + str2));
 
-    <input type="submit" value="Save Book">
-  </form>
+        // charAt()
+        System.out.println("Character at index 1: " + str1.charAt(1));
 
-  <p><a href="list_books.php">View All Books</a></p>
-</body>
-</html>
+        // getChars()
+        char[] ch = new char[5];
+        str1.getChars(0, 5, ch, 0);
+        System.out.println("getChars result: " + new String(ch));
+
+        // compareTo()
+        System.out.println("CompareTo: " + str1.compareTo(str2));
+
+        // equals()
+        System.out.println("Equals: " + str1.equals(str3));
+
+        // equalsIgnoreCase()
+        System.out.println("Equals Ignore Case: " + str1.equalsIgnoreCase(str3));
+
+        // startsWith()
+        System.out.println("StartsWith 'He': " + str1.startsWith("He"));
+
+        // endsWith()
+        System.out.println("EndsWith 'lo': " + str1.endsWith("lo"));
+
+        // contains()
+        System.out.println("Contains 'ell': " + str1.contains("ell"));
+
+        // indexOf()
+        System.out.println("IndexOf 'l': " + str1.indexOf('l'));
+
+        // toUpperCase()
+        System.out.println("Uppercase: " + str1.toUpperCase());
+
+        // toLowerCase()
+        System.out.println("Lowercase: " + str2.toLowerCase());
+
+        // replace()
+        System.out.println("Replace l with x: " + str1.replace('l', 'x'));
+
+        // Type conversions
+        Double d = Double.valueOf("123.45");
+        Integer i = Integer.valueOf("100");
+
+        System.out.println("Double value: " + d);
+        System.out.println("Integer value: " + i);
+    }
+}
