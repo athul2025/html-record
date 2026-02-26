@@ -1,248 +1,44 @@
-<html>
-<head>
-  <title>Student Registration Form</title>
-  <style>
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
+import java.util.Scanner;
+
+class Employee {
+    int eNo;
+    String eName;
+    double eSalary;
+}
+
+public class Main {
+    public static void main(String args[]) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of employees: ");
+        int n = sc.nextInt();
+
+        Employee emp[] = new Employee[n];
+
+        // Input
+        for(int i=0; i<n; i++){
+            emp[i] = new Employee();
+
+            System.out.print("Enter eNo: ");
+            emp[i].eNo = sc.nextInt();
+
+            System.out.print("Enter eName: ");
+            emp[i].eName = sc.next();
+
+            System.out.print("Enter Salary: ");
+            emp[i].eSalary = sc.nextDouble();
+        }
+
+        // Search
+        System.out.print("Enter eNo to search: ");
+        int s = sc.nextInt();
+
+        for(int i=0; i<n; i++){
+            if(emp[i].eNo == s){
+                System.out.println("Employee Found");
+                System.out.println(emp[i].eNo + " " + emp[i].eName + " " + emp[i].eSalary);
+            }
+        }
     }
-    th, td {
-      padding: 8px;
-      text-align: left;
-      vertical-align: top;
-    }
-    .note {
-      color: gray;
-      font-size: 12px;
-    }
-    button {
-      margin-right: 10px;
-      padding: 6px 12px;
-    }
-  </style>
-</head>
-<body>
-  <div>
-    <h1>STUDENT REGISTRATION FORM</h1>
-
-    <form id="regForm" onsubmit="return validateForm()">
-      <table align="center">
-        <tr>
-          <th>FIRST NAME:</th>
-          <td><input type="text" id="fname" name="fname" required></td>
-        </tr>
-
-        <tr>
-          <th>LAST NAME:</th>
-          <td><input type="text" id="lname" name="lname" required></td>
-        </tr>
-
-        <tr>
-          <th>EMAIL ID:</th>
-          <td><input type="email" id="email" name="email" placeholder="abcdefg@gmail.com" required></td>
-        </tr>
-
-        <tr>
-          <th>DOB:</th>
-          <td><input type="date" id="dob" name="dob" required></td>
-        </tr>
-
-        <tr>
-          <th>MOBILE NUMBER:</th>
-          <td><input type="text" id="mobile" name="mobile" maxlength="10" placeholder="1234567890" 
-              oninput="this.value=this.value.replace(/[^0-9]/g,'');" required></td>
-        </tr>
-
-        <tr>
-          <th>GENDER:</th>
-          <td>
-            <label><input type="radio" name="gender" value="male" required> Male</label>
-            <label><input type="radio" name="gender" value="female"> Female</label>
-          </td>
-        </tr>
-
-        <tr>
-          <th>ADDRESS:</th>
-          <td><textarea name="addr" rows="2" placeholder="Address"></textarea></td>
-        </tr>
-
-        <tr>
-          <th>CITY:</th>
-          <td>
-            <input type="text" id="city" name="city" maxlength="30" placeholder="ABC Town">
-            <span class="note">(max 30 characters)</span>
-          </td>
-        </tr>
-
-        <tr>
-          <th>PIN CODE:</th>
-          <td>
-            <input type="text" id="pin" name="pin" maxlength="6" placeholder="6 digit number" 
-              oninput="this.value=this.value.replace(/[^0-9]/g,'');">
-            <span class="note">(6 digit number)</span>
-          </td>
-        </tr>
-
-        <tr>
-          <th>STATE:</th>
-          <td><input type="text" name="state" placeholder="Kerala"></td>
-        </tr>
-
-        <tr>
-          <th>COUNTRY:</th>
-          <td><input type="text" name="country" value="India"></td>
-        </tr>
-
-        <tr>
-          <th>HOBBIES:</th>
-          <td>
-            <label><input type="checkbox" name="hobbies" value="dancing"> Dancing</label>
-            <label><input type="checkbox" name="hobbies" value="singing"> Singing</label>
-            <label><input type="checkbox" name="hobbies" value="painting"> Painting</label>
-            <label><input type="checkbox" name="hobbies" value="reading"> Reading</label>
-          </td>
-        </tr>
-
-        <tr>
-          <th>QUALIFICATION:</th>
-          <td>
-            <table>
-              <tr>
-                <th>SL NO</th>
-                <th>Examination</th>
-                <th>Board</th>
-                <th>Percentage</th>
-                <th>Year of Passing</th>
-              </tr>
-
-              <tr>
-                <td>1</td>
-                <td>Class X</td>
-                <td><input type="text" name="board_x" placeholder="Kerala"></td>
-                <td><input type="text" name="perc_x" placeholder="98" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"></td>
-                <td><input type="text" name="yop_x" placeholder="2016" oninput="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>Class XII</td>
-                <td><input type="text" name="board_xii" placeholder="Kerala"></td>
-                <td><input type="text" name="perc_xii" placeholder="90" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"></td>
-                <td><input type="text" name="yop_xii" placeholder="2018" oninput="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>DEGREE</td>
-                <td><input type="text" name="board_deg" placeholder="Kerala"></td>
-                <td><input type="text" name="perc_deg" placeholder="85" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"></td>
-                <td><input type="text" name="yop_deg" placeholder="2021" oninput="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-              </tr>
-
-              <tr>
-                <td>4</td>
-                <td>MASTERS</td>
-                <td><input type="text" name="board_mas" placeholder="IIT"></td>
-                <td><input type="text" name="perc_mas" placeholder="77" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"></td>
-                <td><input type="text" name="yop_mas" placeholder="2023" oninput="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <tr>
-          <th>COURSE APPLIED FOR:</th>
-          <td>
-            <label><input type="radio" name="course" value="BCA"> B.C.A</label>
-            <label><input type="radio" name="course" value="MTech"> M.Tech</label>
-            <label><input type="radio" name="course" value="MSc"> M.Sc</label>
-            <label><input type="radio" name="course" value="PhD"> Ph.D</label>
-          </td>
-        </tr>
-
-        <tr>
-          <th>PASSWORD:</th>
-          <td>
-            <input type="password" id="pwd" name="pwd" maxlength="30" required>
-            <span class="note">(min 6, max 30 characters)</span>
-          </td>
-        </tr>
-
-        <tr>
-          <th>USERNAME:</th>
-          <td><input type="text" id="uname" name="uname" maxlength="10" placeholder="10 characters"></td>
-        </tr>
-
-        <tr>
-          <th>Date of TC:</th>
-          <td><input type="date" name="tc_date"></td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td>
-            <button type="submit">SUBMIT</button>
-            <button type="reset">RESET</button>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </div>
-
-  <script>
-    function validateForm() {
-      const fname = document.getElementById('fname').value.trim();
-      const lname = document.getElementById('lname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const mobile = document.getElementById('mobile').value.trim();
-      const pin = document.getElementById('pin').value.trim();
-      const pwd = document.getElementById('pwd').value.trim();
-      const course = document.querySelector('input[name="course"]:checked');
-
-      const nameRegex = /^[A-Za-z]+$/;
-      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-      const mobileRegex = /^[0-9]{10}$/;
-      const pinRegex = /^[0-9]{6}$/;
-
-      if (!nameRegex.test(fname)) {
-        alert("First name should contain only letters.");
-        return false;
-      }
-
-      if (!nameRegex.test(lname)) {
-        alert("Last name should contain only letters.");
-        return false;
-      }
-
-      if (!emailRegex.test(email)) {
-        alert("Enter a valid email address.");
-        return false;
-      }
-
-      if (!mobileRegex.test(mobile)) {
-        alert("Mobile number must be exactly 10 digits.");
-        return false;
-      }
-
-      if (pin !== "" && !pinRegex.test(pin)) {
-        alert("PIN code must be 6 digits.");
-        return false;
-      }
-
-      if (pwd.length < 6) {
-        alert("Password must be at least 6 characters long.");
-        return false;
-      }
-
-      if (!course) {
-        alert("Please select a course.");
-        return false;
-      }
-
-      alert("Form submitted successfully!");
-      return true;
-    }
-  </script>
-</body>
-</html>
-
+}
