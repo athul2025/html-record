@@ -1,0 +1,23 @@
+DELIMITER //
+
+CREATE PROCEDURE membership_status(
+    IN cust_credit INT,
+    OUT membership VARCHAR(20)
+)
+
+BEGIN
+
+IF cust_credit > 5000 THEN
+    SET membership = 'Platinum';
+
+ELSEIF cust_credit >= 1000 AND cust_credit <= 5000 THEN
+    SET membership = 'Gold';
+
+ELSE
+    SET membership = 'Silver';
+
+END IF;
+
+END //
+
+DELIMITER ;
