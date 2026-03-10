@@ -9,7 +9,6 @@ BEGIN
 
 IF cust_credit > 5000 THEN
     SET membership = 'Platinum';
-
 ELSEIF cust_credit >= 1000 AND cust_credit <= 5000 THEN
     SET membership = 'Gold';
 
@@ -21,3 +20,9 @@ END IF;
 END //
 
 DELIMITER ;
+
+
+
+
+CALL membership_status(6000,@m);
+SELECT @m;
